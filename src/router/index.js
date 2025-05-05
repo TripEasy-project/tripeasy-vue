@@ -1,13 +1,22 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+/** */
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
+  linkActiveClass: 'active', //自動對應css，
   routes: [
     {
       path: '/',
       name: 'home',
       component: HomeView,
+      children: [
+        {
+          path: 'search',
+          name: 'search',
+          component: () => import('../views/front/searchPage.vue'),
+        },
+      ],
     },
     {
       path: '/about',
